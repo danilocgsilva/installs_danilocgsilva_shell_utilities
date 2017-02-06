@@ -1,0 +1,13 @@
+#!/bin/bash
+
+installsdanilocgsilvautility() {
+    # Declare the error array
+    declare -a installsdanilocgsilvautility_errors
+
+    # 1. Check if the first parameter, which must be the utility name, was provided.
+    if [ ${#1} -eq 0 ]; then
+        installsdanilocgsilvautility_errors+=("You need to provides the first argument to be the utility name.")
+    fi
+}
+
+installsdanilocgsilvautility

@@ -3,13 +3,15 @@ Installs some missing danilocgsilva shell lib
 Nodes:
 temporary folder: /tmp/danilocgsilva_shell_installs
 
-
-	1. Check the internet connection pinging to the github site.
-	2. Check if the curl utility exists in the system.
-	3. Check if can save in the /usr/local/bin.
-	4. Clean, if exists, the /tmp/danilocgsilva_shell_installs, if some old installations fails.
-	5. Create /tmp/danilocgsilva_shell_installs folder.
-	6. Download the current utility programfile foders.
-	7. Copy everything to /usr/local/bin
-	8. Remove recursivelly the /tmp/danilocgsilva_shell_installs
+	1. Check if the first parameter, which must be the utility name, was provided.
+	2. Check the internet connection pinging to the github site.
+	3. Check if the curl utility exists in the system.
+	4. Check if can save in the /usr/local/bin.
+	5. Clean, if exists, the /tmp/danilocgsilva_shell_installs, if some old installations fails.
+	6. Create /tmp/danilocgsilva_shell_installs folder.
+	7. Verify if the utility exists.
+	7.1 Loop through all projects from danilocgsilva user, checking the poresence of programfiles folder
+	8. Download the current utility programfile foders.
+	9. Copy everything to /usr/local/bin
+	10. Remove recursivelly the /tmp/danilocgsilva_shell_installs
 
