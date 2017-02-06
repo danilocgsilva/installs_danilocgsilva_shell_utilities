@@ -7,10 +7,9 @@ temporary folder: /tmp/danilocgsilva_shell_installs
 	2. Check the internet connection pinging to the github site.
 	3. Check if the curl utility exists in the system.
 	4. Check if can save in the /usr/local/bin.
-	5. Clean, if exists, the /tmp/danilocgsilva_shell_installs, if some old installations fails.
-	6. Create /tmp/danilocgsilva_shell_installs folder.
-	7. Verify if the utility exists.
-	7.1 Loop through all projects from danilocgsilva user, checking the poresence of programfiles folder
+	5. Verify if the utility exists using a php file uploaded.
+	6. Clean, if exists, the /tmp/danilocgsilva_shell_installs, if some old installations fails.
+	7. Create /tmp/danilocgsilva_shell_installs folder.
 	8. Download the current utility programfile foders.
 	9. Copy everything to /usr/local/bin
 	10. Remove recursivelly the /tmp/danilocgsilva_shell_installs

@@ -1,0 +1,4 @@
+1. Lists the danilocgsilva repositories with: https://api.github.com/users/danilocgsilva/repos
+2. For each repository in the loop, check the presence of "programfiles" folder
+3. If exists, recursively navigate to the contents an creates the files tree in a array. Mount in each line to draw the file path in the local machine.
+4. Outputs the file tree to download and drives the folder creation, of needed.
