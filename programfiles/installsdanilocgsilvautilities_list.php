@@ -1,4 +1,5 @@
 <?php
+include_once('installsdanilocgsilvautilities_list.configs.php');
 
 /**
  * Automates the task of fetching the object from a curl web consult
@@ -10,6 +11,8 @@ function extract_obj_curl($url, &$ch) {
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+    curl_setopt($ch, CURLOPT_USERPWD, $github_pass);
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     $content = curl_exec($ch);
     $obj_returned = json_decode($content);
     return $obj_returned;
