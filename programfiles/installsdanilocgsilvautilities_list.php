@@ -45,6 +45,7 @@ function check_if_programfiles_is_present($repository_name, &$ch) {
     return check_program_file_in_object_array($filelist);
 }
 
+
 header("Content-Type: text/plain");
 
 $ch = curl_init();
