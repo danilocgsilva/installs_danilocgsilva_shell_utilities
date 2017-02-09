@@ -1,4 +1,9 @@
 1. Lists the danilocgsilva repositories with: https://api.github.com/users/danilocgsilva/repos
-2. For each repository in the loop, check the presence of "programfiles" folder
-3. If exists, recursively navigate to the contents an creates the files tree in a array. Mount in each line to draw the file path in the local machine.
-4. Outputs the file tree to download and drives the folder creation, of needed.
+2. For each repository in the loop, check if the argument provided, which must be the utility name, matches and have "programfiles" folder
+3. If exists, recursively navigate to the contents from programfiles folder an creates the files tree in a array. Mount in each line to draw the file path in the local machine.
+4. Don`t forget to cancel the loop from item 2
+5. Outputs the file tree to download and drives the folder creation, of needed.
+
+Loop planning:
+Object: creates the file tree to allow shell download and install through local curl. It will crates the file tree since the progrmfiles project folder
+1. Get objects from uri like https://api.github.com/repos/danilocgsilva/installs_danilocgsilva_shell_utilities/contents/programfiles?ref=master. Parsed, this is an array of objects.
