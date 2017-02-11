@@ -7,11 +7,12 @@ u_ping() {
     ping_source=$(which ping)
     site_to_ping=github.com
 
-    # Tests if exists Windows/system32 in the path. If so, is the Windows ping utility
-    if [[ $ping_source =~ 'Windows/system32' ]]; then
-        ping -n 1 $site_to_ping > /dev/null
+    # Tests if exists Windows/system32 in the path. If so, is the Windows ping utility.
+    shopt -s nocasematch
+    if [[ $ping_source =~ 'windows/system32' ]]; then
+        ping -n 2 $site_to_ping > /dev/null
     else
-        ping -c 1 $site_to_ping > /dev/null
+        ping -c 2 $site_to_ping > /dev/null
     fi
 }
 
