@@ -1,5 +1,23 @@
 #!/bin/bash
 
+##
+# u_ping stands for "Universal Ping". Auxiliar funcition. It must checks if the ping present in the system is the Linux ping or Microsoft ping to choose the right parameter to provides
+u_ping() {
+
+    ping_source=$(which ping)
+    site_to_ping=github.com
+
+    # Tests if exists Windows/system32 in the path. If so, is the Windows ping utility
+    if [[ $ping_source =~ 'Windows/system32' ]]; then
+        ping -n 1 $site_to_ping > /dev/null
+    else
+        ping -c 1 $site_to_ping > /dev/null
+    fi
+}
+
+##
+# The main funcion
+# Check the planning folder
 installsdanilocgsilvautility() {
     # Declare the error array
     declare -a installsdanilocgsilvautility_errors
@@ -8,6 +26,30 @@ installsdanilocgsilvautility() {
     if [ ${#1} -eq 0 ]; then
         installsdanilocgsilvautility_errors+=("You need to provides the first argument to be the utility name.")
     fi
+
+    # 2. Check the internet connection
+    echo Testing connection:
+    u_ping
+    if [ $? -ne 0 ]; then
+        installsdanilocgsilvautility_errors+=("Error in the connection.")
+    fi
+
+    # 3. Checks if the curl utility exists within the system
+    if ! [ $(which curl) ]; then
+        installsdanilocgsilvautility_errors+=("The curl utility is not installed in the system.")
+    fi
+
+    # Error output
+    error_counting=${#installsdanilocgsilvautility_errors[@]}
+    if [ $error_counting -gt 0 ]; then
+        for i in $(seq 0 $(expr $error_counting - 1)); do
+            echo installs_danilocgsilva_shell_utilities error: ${installsdanilocgsilvautility_errors[$i]}
+        done
+        return
+    fi
+
+
 }
 
-installsdanilocgsilvautility
+## The main funcion execution
+installsdanilocgsilvautility $1
