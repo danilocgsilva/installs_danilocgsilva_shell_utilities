@@ -45,8 +45,23 @@ function check_if_programfiles_is_present($repository_name, &$ch) {
     return check_program_file_in_object_array($filelist);
 }
 
+/**
+ * Verify values provided from GET. If something "strange", halts the application.
+ * @return {string}
+ */
+function validates_input_from_get($value) {
+    $first_entrance = htmlspecialchars($value);
+    if (!preg_match('/[a-zA-Z0-9]/', $first_entrance)) {
+        die();
+    }
+}
 
+/**
+ * Functions is over. Now the processing
+ */
 header("Content-Type: text/plain");
+
+
 
 $ch = curl_init();
 

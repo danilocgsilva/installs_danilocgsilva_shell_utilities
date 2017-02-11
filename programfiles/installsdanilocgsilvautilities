@@ -49,6 +49,8 @@ installsdanilocgsilvautility() {
         installsdanilocgsilvautility_errors+=("The current user can not write in the /usr/local/bin")
     fi
 
+    #. Verify if the address within .installs_danilocgsilva_shell_utilites_conf is reachable
+
     # Error output
     error_counting=${#installsdanilocgsilvautility_errors[@]}
     if [ $error_counting -gt 0 ]; then
