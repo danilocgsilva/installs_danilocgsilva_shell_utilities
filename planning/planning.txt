@@ -4,13 +4,14 @@ Nodes:
 temporary folder: /tmp/danilocgsilva_shell_installs
 
 	1. Check if the first parameter, which must be the utility name, was provided.
-	2. Check the internet connection pinging to the github site.
-	3. Check if the curl utility exists in the system.
-	4. Check if can save in the /usr/local/bin.
-	5. Verify if the utility exists using a php file uploaded.
-	6. Clean, if exists, the /tmp/danilocgsilva_shell_installs, if some old installations fails.
-	7. Create /tmp/danilocgsilva_shell_installs folder.
-	8. Download the current utility programfile foders.
-	9. Copy everything to /usr/local/bin
-	10. Remove recursivelly the /tmp/danilocgsilva_shell_installs
+	2. Check if in the user folder, have a file named as .installs_danilocgsilva_shell_utilites_conf that will ships the php address of yhe utility that will fetches informations from the github.
+	3. Check the internet connection pinging to the github site.
+	4. Check if the curl utility exists in the system.
+	5. Check if can save in the /usr/local/bin.
+	6. Verify if the address within .installs_danilocgsilva_shell_utilites_conf is from the script that will brings the informations from github.
+	7. Clean, if exists, the /tmp/danilocgsilva_shell_installs, if some old installations fails.
+	8. Create /tmp/danilocgsilva_shell_installs folder.
+	9. Download the current utility programfile foders.
+	10. Copy everything to /usr/local/bin
+	11. Remove recursivelly the /tmp/danilocgsilva_shell_installs
 

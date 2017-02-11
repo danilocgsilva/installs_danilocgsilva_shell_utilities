@@ -1,3 +1,4 @@
+0. Must receive an 'op' parameter (op stands from operation). op can be 'test', what will just return an 'ok' message, so it can confirms that the script was reached. op can be 'fetch', that points that it will make all operarions and also expects another parameter, called 'utility name', that will be what the utility must find.
 1. Lists the danilocgsilva repositories with: https://api.github.com/users/danilocgsilva/repos
 2. For each repository in the loop, check if the argument provided, which must be the utility name, matches and have "programfiles" folder
 3. If exists, recursively navigate to the contents from programfiles folder an creates the files tree in a array. Mount in each line to draw the file path in the local machine.
