@@ -8,3 +8,7 @@
 Loop planning:
 Object: creates the file tree to allow shell download and install through local curl. It will crates the file tree since the progrmfiles project folder
 1. Get objects from uri like https://api.github.com/repos/danilocgsilva/installs_danilocgsilva_shell_utilities/contents/programfiles?ref=master. Parsed, this is an array of objects.
+2. Recursive function:
+    -Writes the file paths of all files to output.
+
+    1. Receives an array ob objects. Receives
