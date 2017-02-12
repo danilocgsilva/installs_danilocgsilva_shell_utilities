@@ -100,8 +100,20 @@ foreach ($rep_list as $rep) {
 
     if ($programfiles_present) {
         echo "program file is here!\n";
+        $url_to_extract = "https://api.github.com/repos/danilocgsilva/" . $project_name . "/contents/programfiles?ref=master";
+        echo $url_to_extract . "\n";
+        $pf_contents = extract_obj_curl($url_to_extract, $ch);
+        foreach($pf_contents as $content) {
+            $content_file_name = $content->name;
+            if ($content_file_name == $utility_name) {
+                echo "FOUND IT!!!!\n";
+                return;
+            }
+        }
     } else {
         echo "program file missing\n";
     }
     echo "\n";
 }
+
+echo "I DID NOT FOUND NOTHUNG. SORRY...\n";
