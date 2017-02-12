@@ -99,9 +99,9 @@ foreach ($rep_list as $rep) {
     $programfiles_present = check_if_programfiles_is_present($project_name, $ch);
 
     if ($programfiles_present) {
-        echo "program file is here!\n";
+        
         $url_to_extract = "https://api.github.com/repos/danilocgsilva/" . $project_name . "/contents/programfiles?ref=master";
-        echo $url_to_extract . "\n";
+        
         $pf_contents = extract_obj_curl($url_to_extract, $ch);
         foreach($pf_contents as $content) {
             $content_file_name = $content->name;
