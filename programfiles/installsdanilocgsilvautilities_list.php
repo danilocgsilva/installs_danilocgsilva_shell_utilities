@@ -1,5 +1,5 @@
 <?php
-include_once('installsdanilocgsilvautilities_list.configs.php');
+require_once('installsdanilocgsilvautilities_list.configs.php');
 
 /**
  * Automates the task of fetching the object from a curl web consult
@@ -8,6 +8,7 @@ include_once('installsdanilocgsilvautilities_list.configs.php');
  * @return {array}
  */
 function extract_obj_curl($url, &$ch) {
+    GLOBAL $github_pass;
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
@@ -84,22 +85,23 @@ if ($operation == "test") {
 
 $utility_name = validates_input_from_get($_GET['utility_name']);
 
-
 $ch = curl_init();
 
 // Repository list
 $rep_list = extract_obj_curl('https://api.github.com/users/danilocgsilva/repos?per_page=10000', $ch);
-var_dump($rep_list);
 
 foreach ($rep_list as $rep) {
-    echo $rep->name . "\n";
 
-    $programfiles_present = check_if_programfiles_is_present($rep->name, $ch);
+    $project_name = $rep->name;
+
+    echo $project_name . "\n";
+
+    $programfiles_present = check_if_programfiles_is_present($project_name, $ch);
 
     if ($programfiles_present) {
         echo "program file is here!\n";
     } else {
         echo "program file missing\n";
     }
-    echo "";
+    echo "\n";
 }
