@@ -61,7 +61,6 @@ installsdanilocgsilvautility() {
         return
     fi
 
-
 }
 
 ## The main funcion execution

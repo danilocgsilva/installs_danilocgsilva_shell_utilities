@@ -54,6 +54,21 @@ function validates_input_from_get($value) {
     if (!preg_match('/[a-zA-Z0-9]/', $first_entrance)) {
         die();
     }
+    return $first_entrance;
+}
+
+/**
+ * Verify if the provided values are one of the expected. If not, halts the processing
+ * @return {string}
+ */
+function verify_if_values_are_expected_op_and_return() {
+    $operation = validates_input_from_get($_GET['op']);
+    
+    if (!($operation == 'fetch' || $operation == 'test')) {
+        die();
+    }
+
+    return $operation;
 }
 
 /**
@@ -61,12 +76,20 @@ function validates_input_from_get($value) {
  */
 header("Content-Type: text/plain");
 
+$operation = verify_if_values_are_expected_op_and_return();
+if ($operation == "test") {
+    echo 'ok';
+    exit();
+}
+
+$utility_name = validates_input_from_get($_GET['utility_name']);
 
 
 $ch = curl_init();
 
 // Repository list
 $rep_list = extract_obj_curl('https://api.github.com/users/danilocgsilva/repos?per_page=10000', $ch);
+
 
 foreach ($rep_list as $rep) {
     echo $rep->name . "\n";
@@ -78,4 +101,5 @@ foreach ($rep_list as $rep) {
     } else {
         echo "program file missing\n";
     }
+    echo "";
 }
