@@ -11,4 +11,7 @@ Object: creates the file tree to allow shell download and install through local 
 2. Recursive function:
     -Writes the file paths of all files to output.
 
-    1. Receives an array ob objects. Receives
+    1. Receives an array objects ($object_arrays). Receives also the current path place ($current_path). Naturally, when the loop starts, it will receiva a empty string (""). And by the third parameter, receives the string that will be forged ($forging_string), that must be received as reference.
+    2. For each entry in array:
+        -If is a regular file, appends it to the $current_path and writes a new line into the $forging_string.
+        -If is a folder, make a new curl request to lists the folder contents. Call itself again, providing the folder name as $current_path, the listing fetched from the curl call as $object_arrays and add the same $forging_string.
