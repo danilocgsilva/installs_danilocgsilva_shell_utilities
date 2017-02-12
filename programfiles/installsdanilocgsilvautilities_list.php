@@ -89,7 +89,7 @@ $ch = curl_init();
 
 // Repository list
 $rep_list = extract_obj_curl('https://api.github.com/users/danilocgsilva/repos?per_page=10000', $ch);
-
+var_dump($rep_list);
 
 foreach ($rep_list as $rep) {
     echo $rep->name . "\n";
