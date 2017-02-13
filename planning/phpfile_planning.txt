@@ -15,3 +15,4 @@ Object: creates the file tree to allow shell download and install through local 
     2. For each entry in array:
         -If is a regular file, appends it to the $current_path and writes a new line into the $forging_string.
         -If is a folder, make a new curl request to lists the folder contents. Call itself again, providing the folder name as $current_path, the listing fetched from the curl call as $object_arrays and add the same $forging_string.
+    3. In the end of the loop, return, so it jumps out from to the outer function execution, or finish the recursive execution.

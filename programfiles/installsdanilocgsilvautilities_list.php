@@ -73,6 +73,33 @@ function verify_if_values_are_expected_op_and_return() {
 }
 
 /**
+ * The recursive function to fetch files from the project folder found
+ * @return {string}
+ */
+function prints_download_project_tree($object_array, $current_place, &$forging_string) {
+    foreach ($object_array as $entry) {
+
+        $entry_type = $entry->type;
+        $entry_name = $entry_name;
+        $forging_string .= "\n";
+
+        switch ($entry_type) {
+
+            case "file":
+
+                $forging_string .= $current_place . $entry_name;
+
+            case "dir":
+
+                $content_url = "https://api.github.com/repos/danilocgsilva/installs_danilocgsilva_shell_utilities/contents/programfiles/" .  . "?ref=master";
+                $folder_contents = extract_obj_curl();
+
+        }
+
+    }
+}
+
+/**
  * Functions is over. Now the processing
  */
 header("Content-Type: text/plain");
@@ -116,4 +143,4 @@ foreach ($rep_list as $rep) {
     echo "\n";
 }
 
-echo "I DID NOT FOUND NOTHUNG. SORRY...\n";
+echo "I DID NOT FOUND NOTHING. SORRY...\n";
