@@ -80,7 +80,7 @@ function prints_download_project_tree($object_array, $current_place, &$forging_s
     foreach ($object_array as $entry) {
 
         $entry_type = $entry->type;
-        $entry_name = $entry_name;
+        $entry_name = $entry->name;
         $forging_string .= "\n";
 
         switch ($entry_type) {
@@ -91,8 +91,8 @@ function prints_download_project_tree($object_array, $current_place, &$forging_s
 
             case "dir":
 
-                $content_url = "https://api.github.com/repos/danilocgsilva/installs_danilocgsilva_shell_utilities/contents/programfiles/" .  . "?ref=master";
-                $folder_contents = extract_obj_curl();
+                $content_url = "https://api.github.com/repos/danilocgsilva/installs_danilocgsilva_shell_utilities/contents/programfiles/" . $entry_type . "?ref=master";
+                $folder_contents = extract_obj_curl($content_url, $ch);
 
         }
 
