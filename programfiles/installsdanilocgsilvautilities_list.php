@@ -15,6 +15,18 @@ function extract_obj_curl($url, &$ch) {
     curl_setopt($ch, CURLOPT_USERPWD, $github_pass);
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     $content = curl_exec($ch);
+
+    try {
+        if ($content === false) {
+            throw new Exception(curl_error($ch), curl_errno($ch));
+        }
+    } catch (Exception $e) {
+        header("Content-Type: text/html");
+        trigger_error(
+                sprintf("Curl failed with error #%d: %s", $e->getCode(), $e->getMessage()
+            ), E_USER_ERROR);
+    }
+
     $obj_returned = json_decode($content);
     return $obj_returned;
 }
@@ -88,13 +100,20 @@ function prints_download_project_tree($object_array, $current_place, &$forging_s
             case "file":
 
                 $forging_string .= $current_place . $entry_name;
+                break;
 
             case "dir":
 
-                $content_url = "https://api.github.com/repos/danilocgsilva/installs_danilocgsilva_shell_utilities/contents/programfiles/" . $entry_type . "?ref=master";
+                $content_url = "https://api.github.com/repos/danilocgsilva/installs_danilocgsilva_shell_utilities/contents/programfiles/" . $entry_name . "?ref=master";
                 $folder_contents = extract_obj_curl($content_url, $ch);
+                prints_download_project_tree($folder_contents, $entry_name . "/", $forging_string);
+                break;
 
         }
+
+        echo "fs: " . $forging_string;
+
+        return;
 
     }
 }
@@ -104,12 +123,14 @@ function prints_download_project_tree($object_array, $current_place, &$forging_s
  */
 header("Content-Type: text/plain");
 
+// Secure get the operation type (fetch|test)
 $operation = verify_if_values_are_expected_op_and_return();
 if ($operation == "test") {
     echo 'ok';
     exit();
 }
 
+// Secure get utility name
 $utility_name = validates_input_from_get($_GET['utility_name']);
 
 $ch = curl_init();
@@ -117,23 +138,29 @@ $ch = curl_init();
 // Repository list
 $rep_list = extract_obj_curl('https://api.github.com/users/danilocgsilva/repos?per_page=10000', $ch);
 
+// Loop through repositories to find whats is needed
 foreach ($rep_list as $rep) {
 
     $project_name = $rep->name;
 
     echo $project_name . "\n";
 
+    // Only the projects that have in root the "programfiles" folders are needed.
     $programfiles_present = check_if_programfiles_is_present($project_name, $ch);
-
     if ($programfiles_present) {
         
         $url_to_extract = "https://api.github.com/repos/danilocgsilva/" . $project_name . "/contents/programfiles?ref=master";
         
+        // Program files contents
         $pf_contents = extract_obj_curl($url_to_extract, $ch);
         foreach($pf_contents as $content) {
             $content_file_name = $content->name;
             if ($content_file_name == $utility_name) {
                 echo "FOUND IT!!!!\n";
+
+                $forging_string = "";
+                $tree_to_download = prints_download_project_tree($pf_contents, "", $forging_string);
+
                 return;
             }
         }
